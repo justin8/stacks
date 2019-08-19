@@ -10,14 +10,15 @@ export class CloudwatchLogsRetentionStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const logLimiterLambda = new lambda.Function(this, 'MyFunction', {
+    const logRetentionMonitorLambda = new lambda.Function(this, 'MyFunction', {
+      functionName: 'LogRetentionMonitor',
       runtime: lambda.Runtime.PYTHON_3_7,
       timeout: cdk.Duration.seconds(300),
       handler: 'index.main',
       code: lambda.Code.asset('lambda'),
     });
 
-    logLimiterLambda.addToRolePolicy(new PolicyStatement({
+    logRetentionMonitorLambda.addToRolePolicy(new PolicyStatement({
       effect: Effect.ALLOW,
       resources: ['*'],
       actions: [
@@ -27,10 +28,11 @@ export class CloudwatchLogsRetentionStack extends cdk.Stack {
     }));
 
     const logLimiterLambdaRule = new events.Rule(this, 'Rule', {
+      ruleName: 'LogRetentionMonitor',
       schedule: events.Schedule.rate(cdk.Duration.days(7)),
     });
 
     logLimiterLambdaRule.addTarget(
-        new targets.LambdaFunction(logLimiterLambda));
+        new targets.LambdaFunction(logRetentionMonitorLambda));
   }
 }
