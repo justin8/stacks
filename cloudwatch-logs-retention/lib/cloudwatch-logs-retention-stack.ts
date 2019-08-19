@@ -14,7 +14,7 @@ export class CloudwatchLogsRetentionStack extends cdk.Stack {
       functionName: 'LogRetentionMonitor',
       runtime: lambda.Runtime.PYTHON_3_7,
       timeout: cdk.Duration.seconds(300),
-      handler: 'index.main',
+      handler: 'logLimiterLambda.main',
       code: lambda.Code.asset('lambda'),
     });
 
