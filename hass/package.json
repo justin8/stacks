@@ -1,0 +1,28 @@
+{
+  "name": "hass",
+  "version": "0.1.0",
+  "bin": {
+    "hass": "bin/hass.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/node": "12.7.4",
+    "typescript": "^3.6.2",
+    "ts-node": "^8.3.0",
+    "aws-cdk": "^1.7.0"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-codebuild": "^1.7.0",
+    "@aws-cdk/aws-codecommit": "^1.7.0",
+    "@aws-cdk/aws-codedeploy": "^1.7.0",
+    "@aws-cdk/aws-codepipeline": "^1.7.0",
+    "@aws-cdk/aws-codepipeline-actions": "^1.7.0",
+    "@aws-cdk/aws-iam": "^1.7.0",
+    "@aws-cdk/core": "^1.7.0",
+    "source-map-support": "^0.5.13"
+  }
+}
