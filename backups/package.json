@@ -22,7 +22,8 @@
     "@aws-cdk/aws-s3": "^1.18.0",
     "@aws-cdk/aws-sns": "^1.18.0",
     "@aws-cdk/core": "^1.18.0",
-    "@justin8-cdk/logwrapper": "^1.0.0",
+    "@justin8-cdk/alarms-stack": "^1.0.3",
+    "@justin8-cdk/logwrapper": "^1.0.3",
     "source-map-support": "^0.5.16"
   }
 }
