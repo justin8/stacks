@@ -3,7 +3,7 @@ import { PolicyStatement, User, Effect, Policy } from "@aws-cdk/aws-iam";
 import { Bucket, BucketEncryption } from "@aws-cdk/aws-s3";
 import { FilterPattern } from "@aws-cdk/aws-logs";
 import { Duration } from "@aws-cdk/core";
-import { LogGroupWrapper } from "./log-group-wrapper";
+import { LogGroupWrapper } from "@justin8-cdk/logwrapper";
 import { Topic } from "@aws-cdk/aws-sns";
 
 export interface s3BackupStackProps {
