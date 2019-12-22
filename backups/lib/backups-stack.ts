@@ -50,16 +50,14 @@ export class BackupsStack extends cdk.Stack {
     const logGroups = [
       new LogGroupWrapper(this, "s3Backup", {
         logGroupName: "/var/log/s3-backup.log",
+        alarmsTopic: props.alarmsTopic,
         filterPattern: FilterPattern.anyTerm(
           "error",
           "Error",
           "does not exist"
         ),
         noLogsAlarm: {
-          enabled: false,
-          evaluationPeriods: 1,
-          metricPeriod: cdk.Duration.days(1),
-          threshold: 5
+          enabled: false
         },
         errorsAlarm: {
           enabled: true,
