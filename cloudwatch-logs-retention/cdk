@@ -1,5 +1,0 @@
-#!/bin/bash
-export AWS_DEFAULT_REGION=us-west-2
-export AWS_PROFILE=justin
-
-cdk "$@"
