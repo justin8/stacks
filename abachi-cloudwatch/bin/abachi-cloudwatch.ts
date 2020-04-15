@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
-import cdk = require('@aws-cdk/core');
-import { AbachiCloudwatchStack } from '../lib/abachi-cloudwatch-stack';
+import "source-map-support/register";
+import cdk = require("@aws-cdk/core");
+import { AbachiCloudwatchStack } from "../lib/abachi-cloudwatch-stack";
 
 const app = new cdk.App();
-new AbachiCloudwatchStack(app, 'AbachiCloudwatchStack');
+new AbachiCloudwatchStack(app, "AbachiCloudwatchStack", {
+  env: { region: "us-east-1" },
+});
