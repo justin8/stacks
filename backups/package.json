@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "cdk": "AWS_PROFILE=backups cdk"
+    "cdk": "AWS_DEFAULT_REGION=us-east-1 AWS_PROFILE=backups cdk"
   },
   "devDependencies": {
     "@types/node": "^13.11.1",
