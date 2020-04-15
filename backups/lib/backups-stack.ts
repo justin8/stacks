@@ -6,7 +6,7 @@ import { Duration } from "@aws-cdk/core";
 import { LogGroupWrapper } from "@justin8-cdk/logwrapper";
 import { Topic } from "@aws-cdk/aws-sns";
 
-export interface s3BackupStackProps {
+export interface s3BackupStackProps extends cdk.StackProps {
   alarmsTopic: Topic;
 }
 
@@ -16,11 +16,11 @@ export class BackupsStack extends cdk.Stack {
 
     const bucket = new Bucket(this, "backupsBucket", {
       bucketName: `justin-dray-backups-${cdk.Aws.REGION}`,
-      encryption: BucketEncryption.KMS_MANAGED
+      encryption: BucketEncryption.KMS_MANAGED,
     });
 
     bucket.addLifecycleRule({
-      abortIncompleteMultipartUploadAfter: Duration.days(7)
+      abortIncompleteMultipartUploadAfter: Duration.days(7),
     });
 
     let users = [];
@@ -35,10 +35,10 @@ export class BackupsStack extends cdk.Stack {
           new PolicyStatement({
             actions: ["s3:*"],
             effect: Effect.ALLOW,
-            resources: [bucket.bucketArn, bucket.arnForObjects("*")]
-          })
-        ]
-      })
+            resources: [bucket.bucketArn, bucket.arnForObjects("*")],
+          }),
+        ],
+      }),
     ];
 
     for (let policy of policies) {
@@ -57,15 +57,15 @@ export class BackupsStack extends cdk.Stack {
           "does not exist"
         ),
         noLogsAlarm: {
-          enabled: false
+          enabled: false,
         },
         errorsAlarm: {
           enabled: true,
           evaluationPeriods: 1,
           metricPeriod: cdk.Duration.minutes(5),
-          threshold: 1
-        }
-      })
+          threshold: 1,
+        },
+      }),
     ];
   }
 }
