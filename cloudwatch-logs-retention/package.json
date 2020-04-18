@@ -7,20 +7,20 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "cdk": "AWS_DEFAULT_REGION=us-west-2 AWS_PROFILE=justin cdk"
+    "cdk": "AWS_PROFILE=justin cdk"
   },
   "devDependencies": {
-    "@types/node": "12.12.21",
-    "aws-cdk": "^1.19.0",
-    "ts-node": "^8.5.4",
-    "typescript": "^3.7.4"
+    "@types/node": "13.7.7",
+    "aws-cdk": "^1.26.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@aws-cdk/aws-events": "^1.19.0",
-    "@aws-cdk/aws-events-targets": "^1.19.0",
-    "@aws-cdk/aws-iam": "^1.19.0",
-    "@aws-cdk/aws-lambda": "^1.19.0",
-    "@aws-cdk/core": "^1.19.0",
+    "@aws-cdk/aws-events": "^1.26.0",
+    "@aws-cdk/aws-events-targets": "^1.26.0",
+    "@aws-cdk/aws-iam": "^1.26.0",
+    "@aws-cdk/aws-lambda": "^1.26.0",
+    "@aws-cdk/core": "^1.26.0",
     "source-map-support": "^0.5.16"
   }
 }
