@@ -1,6 +1,6 @@
 import cdk = require("@aws-cdk/core");
 import { PolicyStatement, User, Effect, Policy } from "@aws-cdk/aws-iam";
-import { Bucket, BucketEncryption } from "@aws-cdk/aws-s3";
+import { Bucket, BucketEncryption, BlockPublicAccess } from "@aws-cdk/aws-s3";
 import { FilterPattern } from "@aws-cdk/aws-logs";
 import { Duration } from "@aws-cdk/core";
 import { LogGroupWrapper } from "@justin8-cdk/logwrapper";
@@ -17,6 +17,7 @@ export class BackupsStack extends cdk.Stack {
     const bucket = new Bucket(this, "backupsBucket", {
       bucketName: `justin-dray-backups-${cdk.Aws.REGION}`,
       encryption: BucketEncryption.KMS_MANAGED,
+      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
     });
 
     bucket.addLifecycleRule({
@@ -26,6 +27,7 @@ export class BackupsStack extends cdk.Stack {
     const photoBackupsBucket = new Bucket(this, "photoBackups", {
       bucketName: `justin-dray-photo-backups-${cdk.Aws.REGION}`,
       encryption: BucketEncryption.KMS_MANAGED,
+      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
     });
 
     photoBackupsBucket.addLifecycleRule({
