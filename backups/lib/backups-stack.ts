@@ -23,6 +23,15 @@ export class BackupsStack extends cdk.Stack {
       abortIncompleteMultipartUploadAfter: Duration.days(7),
     });
 
+    const photoBackupsBucket = new Bucket(this, "photoBackups", {
+      bucketName: `justin-dray-photo-backups-${cdk.Aws.REGION}`,
+      encryption: BucketEncryption.KMS_MANAGED,
+    });
+
+    photoBackupsBucket.addLifecycleRule({
+      abortIncompleteMultipartUploadAfter: Duration.days(7),
+    });
+
     let users = [];
     for (let user of ["abachiBackups"]) {
       users.push(new User(this, user, { userName: user }));
@@ -35,7 +44,12 @@ export class BackupsStack extends cdk.Stack {
           new PolicyStatement({
             actions: ["s3:*"],
             effect: Effect.ALLOW,
-            resources: [bucket.bucketArn, bucket.arnForObjects("*")],
+            resources: [
+              bucket.bucketArn,
+              bucket.arnForObjects("*"),
+              photoBackupsBucket.bucketArn,
+              photoBackupsBucket.arnForObjects("*"),
+            ],
           }),
         ],
       }),
